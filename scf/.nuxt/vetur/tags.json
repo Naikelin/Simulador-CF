@@ -1,0 +1,11 @@
+{
+  "Formulario": {
+    "description": "Auto imported from components/Formulario.vue"
+  },
+  "Loader": {
+    "description": "Auto imported from components/Loader.vue"
+  },
+  "Navbar": {
+    "description": "Auto imported from components/Navbar.vue"
+  }
+}
