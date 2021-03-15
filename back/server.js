@@ -1,40 +1,40 @@
 const express = require( "express" );
-var cors = require('cors')
-const bodyParser = require("body-parser")
+const cors = require('cors');
+const bodyParser = require("body-parser");
 const {spawn} = require('child_process');
-const { ok } = require("assert");
+
 const app = express();
 app.use(cors())
 app.use(bodyParser.json());
-const port = 8080; // default port to listen
+const port = 8080;
 
-// define a route handler for the default home page
-app.get('/', (req, res) => {
-  console.log(req.query)
+app.post('/data', (req, res) => {
+
+  var monto_prestamo = req.body.montoPrestamo
+  var cuota_mensual = req.body.cuotaMensual
+  var cantidad_meses = req.body.cantidadMeses
+  var nombre_banco = req.body.nombreBanco
+
+  console.log(monto_prestamo, cuota_mensual, cantidad_meses)
+
   var dataToSend;
-  // spawn new child process to call the python script
-  const python = spawn('python', ['test.py', 'hola!', 'chau:c']);
-  // collect data from script
+
+  const python = spawn('python', ['test.py', monto_prestamo, cuota_mensual, cantidad_meses]);
+
   python.stdout.on('data', function (data) {
    console.log('Pipe data from python script ...');
    dataToSend = data.toString();
   });
-  // in close event we are sure that stream from child process is closed
+
   python.on('close', (code) => {
   console.log(`child process close all stdio with code ${code}`);
-  // send data to browser
-  console.log(dataToSend)
-  res.send(dataToSend)
+
+  const result = { nombreBanco: nombre_banco, montoPrestamo: monto_prestamo, cuotaMensual: cuota_mensual, cantidadMeses: cantidad_meses, CAE: dataToSend }
+  res.send(result)
   });
 
 });
 
-app.post('/data', (req, res) => {
-  console.log(JSON.stringify(req.body))
-  res.sendStatus(200)
-})
-
-// start the Express server
 app.listen( port, () => {
     console.log( `server started at http://localhost:${ port }` );
 });
