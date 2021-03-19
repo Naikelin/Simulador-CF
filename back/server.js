@@ -19,7 +19,7 @@ app.post('/data', (req, res) => {
 
   var dataToSend;
 
-  const python = spawn('python3', ['test.py', monto_prestamo, cuota_mensual, cantidad_meses]);
+  const python = spawn('python', ['test.py', monto_prestamo, cuota_mensual, cantidad_meses]);
 
   python.stdout.on('data', function (data) {
    console.log('Pipe data from python script ...');

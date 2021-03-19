@@ -5,7 +5,9 @@
   </div>
 </template>
 <script>
-export default {}
+import Tabla from '../components/Tabla.vue'
+export default {
+  components: { Tabla },}
 </script>
 
 <style>

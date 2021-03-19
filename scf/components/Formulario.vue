@@ -65,7 +65,7 @@
       <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
     <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
+      <pre class="m-0">{{ allForms }}</pre>
     </b-card>
   </div>
 </template>
@@ -80,6 +80,7 @@
           cantidadMeses: '',
           nombreBanco: null,
         },
+        allForms: [],
         nombresBancos: [{ text: 'Seleccionar', value: null }, 'Banco de Chile', 'Banco Bice', 'Scotiobank', ''],
         show: true
       }
@@ -90,6 +91,8 @@
         const values = this.form
         const result = await this.$axios.$post('http://localhost:8080/data', values);
         alert(JSON.stringify(result))
+        this.allForms.push(result)
+        alert(JSON.stringify(this.allForms))
       },
       onReset(event) {
         event.preventDefault()

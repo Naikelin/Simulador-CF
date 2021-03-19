@@ -9,3 +9,4 @@ You can directly use them in pages and other components without the need to impo
 - `<Formulario>` | `<formulario>` (components/Formulario.vue)
 - `<Loader>` | `<loader>` (components/Loader.vue)
 - `<Navbar>` | `<navbar>` (components/Navbar.vue)
+- `<Tabla>` | `<tabla>` (components/Tabla.vue)
