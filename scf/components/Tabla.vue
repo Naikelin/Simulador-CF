@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <button @click="$fetch">Refresh</button>
-    <b-table hover :items="items"></b-table>
+    <b-card class="mt-3" header="Form Data Result">
+      <pre class="m-0">{{ items }}</pre>
+    </b-card>
   </div>
+  
 </template>
 
 <script>
@@ -13,8 +15,11 @@
         items: []
       }
     },
-    async fetch() {
-      this.items = await this.$http.$get('https://api.nuxtjs.dev/posts')
+    mounted() {
+    this.$root.$on('eventing', data => {
+      this.items = data
+      console.log(data);
+    });
     }
   }
 </script>

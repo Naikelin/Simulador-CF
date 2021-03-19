@@ -93,6 +93,8 @@
         alert(JSON.stringify(result))
         this.allForms.push(result)
         alert(JSON.stringify(this.allForms))
+        var data = this.allForms
+        this.$root.$emit('eventing', data);
       },
       onReset(event) {
         event.preventDefault()
