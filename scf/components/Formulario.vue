@@ -4,15 +4,14 @@
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="input-group-1"
-        label="Monto Prestamo:"
+        label="Monto Prestamo"
         label-for="input-1"
-        description="We'll never share your email with anyone else."
       >
         <b-form-input
           id="input-1"
           v-model="form.montoPrestamo"
           type="number"
-          placeholder="Enter montoPrestamo"
+          placeholder="Ingrese la cantidad del Prestamo"
           required
         ></b-form-input>
       </b-form-group>
@@ -21,13 +20,13 @@
         id="input-group-4"
         label="Cantidad Meses:"
         label-for="input-4"
-        description="Cantidad meses"
+        description="Meses de financiamiento"
       >
         <b-form-input
           id="input-4"
           v-model="form.cantidadMeses"
           type="number"
-          placeholder="Enter cantidadMeses"
+          placeholder="Meses de financiamiento"
           required
         ></b-form-input>
       </b-form-group>
@@ -37,7 +36,7 @@
           id="input-2"
           v-model="form.cuotaMensual"
           type="number"
-          placeholder="Enter cuotaMensual"
+          placeholder="Ingrese la cuota mensual"
           required
         ></b-form-input>
       </b-form-group>
@@ -81,7 +80,7 @@
           cantidadMeses: '',
           nombreBanco: null,
         },
-        nombresBancos: [{ text: 'Select One', value: null }, 'Banco de Chile', 'Banco Bice', 'Scotiobank', ''],
+        nombresBancos: [{ text: 'Seleccionar', value: null }, 'Banco de Chile', 'Banco Bice', 'Scotiobank', ''],
         show: true
       }
     },
