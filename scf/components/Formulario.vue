@@ -4,38 +4,54 @@
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="input-group-1"
-        label="Email address:"
+        label="Monto Prestamo:"
         label-for="input-1"
         description="We'll never share your email with anyone else."
       >
         <b-form-input
           id="input-1"
-          v-model="form.email"
-          type="email"
-          placeholder="Enter email"
+          v-model="form.montoPrestamo"
+          type="number"
+          placeholder="Enter montoPrestamo"
           required
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+      <b-form-group
+        id="input-group-4"
+        label="Cantidad Meses:"
+        label-for="input-4"
+        description="Cantidad meses"
+      >
+        <b-form-input
+          id="input-4"
+          v-model="form.cantidadMeses"
+          type="number"
+          placeholder="Enter cantidadMeses"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-2" label="Cuota Mensual:" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="form.name"
-          placeholder="Enter name"
+          v-model="form.cuotaMensual"
+          type="number"
+          placeholder="Enter cuotaMensual"
           required
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-3" label="Food:" label-for="input-3">
+      <b-form-group id="input-group-3" label="Institución Financiera:" label-for="input-3">
         <b-form-select
           id="input-3"
-          v-model="form.food"
-          :options="foods"
+          v-model="form.nombreBanco"
+          :options="nombresBancos"
           required
         ></b-form-select>
       </b-form-group>
 
-      <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
+<!--       <b-form-group id="input-group-4" v-slot="{ ariaDescribedby }">
         <b-form-checkbox-group
           v-model="form.checked"
           id="checkboxes-4"
@@ -45,7 +61,7 @@
           <b-form-checkbox value="that">Check that out</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-
+ -->
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
@@ -60,12 +76,12 @@
     data() {
       return {
         form: {
-          email: '',
-          name: '',
-          food: null,
-          checked: []
+          montoPrestamo: '',
+          cuotaMensual: '',
+          cantidadMeses: '',
+          nombreBanco: null,
         },
-        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+        nombresBancos: [{ text: 'Select One', value: null }, 'Banco de Chile', 'Banco Bice', 'Scotiobank', ''],
         show: true
       }
     },
@@ -74,7 +90,7 @@
         event.preventDefault()
         const values = this.form
         const result = await this.$axios.$post('http://localhost:8080/data', values);
-        alert(JSON.stringify(values))
+        alert(JSON.stringify(result))
       },
       onReset(event) {
         event.preventDefault()

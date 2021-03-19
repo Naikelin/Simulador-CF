@@ -15,11 +15,11 @@ app.post('/data', (req, res) => {
   var cantidad_meses = req.body.cantidadMeses
   var nombre_banco = req.body.nombreBanco
 
-  console.log(monto_prestamo, cuota_mensual, cantidad_meses)
+  console.log(monto_prestamo, cuota_mensual, cantidad_meses, nombre_banco)
 
   var dataToSend;
 
-  const python = spawn('python', ['test.py', monto_prestamo, cuota_mensual, cantidad_meses]);
+  const python = spawn('python3', ['test.py', monto_prestamo, cuota_mensual, cantidad_meses]);
 
   python.stdout.on('data', function (data) {
    console.log('Pipe data from python script ...');
