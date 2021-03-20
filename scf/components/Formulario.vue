@@ -8,6 +8,7 @@
         id="input-group-1"
         label="Monto Prestamo"
         label-for="input-1"
+       
       >
         <b-form-input
           id="input-1"
@@ -16,6 +17,7 @@
           min = "1"
           max = "100000000"
           placeholder="Ingrese la cantidad del Prestamo"
+          :disabled="deshabilitado"
           required 
         ></b-form-input>
       </b-form-group>
@@ -29,6 +31,7 @@
         <b-form-input
           id="input-4"
           v-model="form.cantidadMeses"
+          :disabled="deshabilitado"
           type="number"
           min ="2"
           max = "48"
@@ -50,8 +53,10 @@
           type="number"
           :min="Math.ceil(form.montoPrestamo/form.cantidadMeses)"
           placeholder="Ingrese la cuota mensual"
+          :max ="form.montoPrestamo"
           required
         ></b-form-input>
+        
       </b-form-group>
 
       <b-form-group id="input-group-3" label="Institución Financiera:" label-for="input-3">
@@ -96,13 +101,31 @@
           nombreBanco: null,
         },
         allForms:[],
-        nombresBancos: [{ text: 'Seleccionar', value: null }, 'Banco de Chile', 'Banco Bice', 'Scotiobank', 'Universidad Diego Portales'],
+        nombresBancos: [ { text: 'Seleccionar', value: null },
+          'Banco de Chile', 
+          'Banco BICE', 
+          'Scotiabank', 
+          'Banco Estado',
+          'Banco BCI', 
+          'Banco BBVA', 
+          'Banco Falabella',
+          'Banco Itaú',
+          'Banco Santander',
+          'Banco Ripley',
+          'Banco Security',
+          'Banco Condell',
+          'Banco Edwards Citi',
+          'Banco Consorcio',
+          'Corpbanca',
+          'Citibank'
+          ],
+        deshabilitado: false,
         show: true
       }
     },
     computed: {
       descripcionCuota() {
-        return this.form.cantidadMeses? `Ingrese una cuota mensual mayor a ${Math.ceil(this.form.montoPrestamo/this.form.cantidadMeses)}` : ''
+        return this.form.cantidadMeses? `Ingrese una cuota mensual mayor a ${Math.ceil(this.form.montoPrestamo/this.form.cantidadMeses)} y menor a ${Math.ceil(this.form.montoPrestamo)}` : ''
       }
     },
     methods: {
@@ -110,6 +133,9 @@
         event.preventDefault()
         const values = this.form
         const result = await this.$axios.$post('http://localhost:8080/data', values);
+        this.form.cuotaMensual = ''
+        this.form.nombreBanco = null
+        this.deshabilitado = true
         this.$emit('onResult',result)
 /*         alert(JSON.stringify(result)) */
         this.allForms.push(result)
@@ -120,10 +146,12 @@
       onReset(event) {
         event.preventDefault()
         // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
+        this.form.montoPrestamo = ''
+        this.form.cuotaMensual = ''
+        this.form.cantidadMeses = ''
+        this.form.nombreBanco = null
+        this.deshabilitado = false
+        this.$root.$emit('eventing', []);
         // Trick to reset/clear native browser form validation state
         this.show = false
         this.$nextTick(() => {
