@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <b-card class="mt-3" header="Form Data Result">
+<!--     <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ items }}</pre>
-    </b-card>
+    </b-card> -->
+    <b-table striped hover :items="items" ></b-table>
   </div>
   
 </template>
@@ -12,13 +13,12 @@
   export default {
     data() {
       return {
-        items: []
+        items:[]
       }
     },
     mounted() {
     this.$root.$on('eventing', data => {
-      this.items = data
-      console.log(data);
+      this.items = data.sort((a,b) => Number(a.CAE)-Number(b.CAE))
     });
     }
   }

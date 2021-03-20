@@ -14,7 +14,8 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', type: 'text/css', href: "//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.css"}
     ]
   },
 
@@ -37,6 +38,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+/*     'bootstrap-vue/dist/bootstrap-vue-icons.min.css', */
     '@nuxtjs/axios',
   ],
 
