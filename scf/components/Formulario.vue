@@ -1,12 +1,14 @@
 
 <template>
   <div class="container">
-    <b-card img-src="https://www.scj.cl/sites/default/files/2019-08/estudio-de-mercado.jpg" img-alt="Card image" img-right img-width="500">
+    <b-card border-variant="info" img-src="http://www.eloriente.net/home/wp-content/uploads/2017/04/ESTADISTICA.jpg" img-right img-width="500">
      <div class="col-12">
+       <b-card-body title="Comparador de créditos de consumo">
+          <b-card-text>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="input-group-1"
-        label="Monto Prestamo"
+        label="Monto del crédito"
         label-for="input-1"
        
       >
@@ -16,7 +18,7 @@
           type="number"
           min = "1"
           max = "100000000"
-          placeholder="Ingrese la cantidad del Prestamo"
+          placeholder="Ingrese el monto de su crédito, sin puntos"
           :disabled="deshabilitado"
           required 
         ></b-form-input>
@@ -24,9 +26,9 @@
 
       <b-form-group
         id="input-group-4"
-        label="Cantidad Meses:"
+        label="Plazo del crédito en meses"
         label-for="input-4"
-        description="Meses de financiamiento"
+
       >
         <b-form-input
           id="input-4"
@@ -35,14 +37,14 @@
           type="number"
           min ="2"
           max = "48"
-          placeholder="Meses de financiamiento"
+          placeholder="Ingrese el plazo de su credito"
           required
         ></b-form-input>
       </b-form-group>
 
       <b-form-group 
         id="input-group-2" 
-        label="Cuota Mensual:" 
+         label="Tasa de interés mensual" 
         label-for="input-2" 
         :description="descripcionCuota"
         >
@@ -52,7 +54,7 @@
           v-model="form.cuotaMensual"
           type="number"
           :min="Math.ceil(form.montoPrestamo/form.cantidadMeses)"
-          placeholder="Ingrese la cuota mensual"
+          placeholder="Ingrese la taza de interés mensual de su crédito"
           :max ="form.montoPrestamo"
           required
         ></b-form-input>
@@ -79,12 +81,14 @@
         </b-form-checkbox-group>
       </b-form-group>
  -->
-      <b-button type="submit" variant="primary">Simular CAE</b-button>
-      <b-button type="reset" variant="danger">Resetear valores</b-button>
+      <b-button type="submit" variant="outline-info">Simular CAE</b-button>
+      <b-button type="reset" variant="outline-danger">Volver a simular</b-button>
     </b-form>
   <!--  <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
     </b-card> -->
+   </b-card-text>
+    </b-card-body>
   </div>
   </b-card>
   </div>
@@ -101,7 +105,7 @@
           nombreBanco: null,
         },
         allForms:[],
-        nombresBancos: [ { text: 'Seleccionar', value: null },
+        nombresBancos: [ { text: 'Seleccione la institución financiera', value: null },
           'Banco de Chile', 
           'Banco BICE', 
           'Scotiabank', 

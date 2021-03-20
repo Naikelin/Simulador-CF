@@ -3,6 +3,7 @@
     <Navbar/>
     <Formulario/>
     <Tabla/>
+    <Footer/>
 <!--     <b-table striped hover :items="items"></b-table> -->
   </div>
 </template>
