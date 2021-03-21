@@ -7,7 +7,7 @@
 <style>
 html {
   font-family:
-    'Source Sans Pro',
+    "Helvetica Neue","Helvetica","Arial","sans-serif",
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -15,7 +15,7 @@ html {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -35,7 +35,7 @@ html {
   display: inline-block;
   border-radius: 4px;
   border: 1px solid #3b8070;
-  color: #3b8070;
+  color: #f2f2f2;
   text-decoration: none;
   padding: 10px 30px;
 }

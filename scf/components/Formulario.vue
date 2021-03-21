@@ -1,7 +1,7 @@
 
 <template>
-  <div class="container">
-    <b-card border-variant="info" img-src="http://www.eloriente.net/home/wp-content/uploads/2017/04/ESTADISTICA.jpg" img-right img-width="500">
+  <div class="container-fluid">
+    <b-card border-variant="info" img-src="http://www.eloriente.net/home/wp-content/uploads/2017/04/ESTADISTICA.jpg" img-right img-width="500" >
      <div class="col-12">
        <b-card-body title="Comparador de créditos de consumo">
           <b-card-text>
@@ -10,6 +10,7 @@
         id="input-group-1"
         label="Monto del crédito"
         label-for="input-1"
+        
        
       >
         <b-form-input
@@ -44,7 +45,7 @@
 
       <b-form-group 
         id="input-group-2" 
-         label="Tasa de interés mensual" 
+         label="Cuota mensual" 
         label-for="input-2" 
         :description="descripcionCuota"
         >
@@ -54,7 +55,7 @@
           v-model="form.cuotaMensual"
           type="number"
           :min="Math.ceil(form.montoPrestamo/form.cantidadMeses)"
-          placeholder="Ingrese la taza de interés mensual de su crédito"
+          placeholder="Ingrese la cuota mensual de su crédito"
           :max ="form.montoPrestamo"
           required
         ></b-form-input>

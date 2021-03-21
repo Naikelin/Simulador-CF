@@ -1,9 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container-fluid" >
 <!--     <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ items }}</pre>
     </b-card> -->
-    <b-table striped hover :items="items" ></b-table>
+    
+    <b-table class="table table-bordered" striped hover :items="items" ></b-table>
   </div>
   
 </template>
