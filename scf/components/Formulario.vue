@@ -156,6 +156,7 @@
         this.form.cantidadMeses = ''
         this.form.nombreBanco = null
         this.deshabilitado = false
+        this.allForms = []
         this.$root.$emit('eventing', []);
         // Trick to reset/clear native browser form validation state
         this.show = false
