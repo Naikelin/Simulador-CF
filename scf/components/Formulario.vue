@@ -8,7 +8,7 @@
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
         id="input-group-1"
-        label="Monto del crédito"
+        label="Monto del crédito en CLP"
         label-for="input-1"
         
        
@@ -45,7 +45,7 @@
 
       <b-form-group 
         id="input-group-2" 
-         label="Cuota mensual" 
+         label="Cuota mensual en CLP" 
         label-for="input-2" 
         :description="descripcionCuota"
         >
@@ -130,7 +130,7 @@
     },
     computed: {
       descripcionCuota() {
-        return this.form.cantidadMeses? `Ingrese una cuota mensual mayor a ${Math.ceil(this.form.montoPrestamo/this.form.cantidadMeses)} y menor a ${Math.ceil(this.form.montoPrestamo)}` : ''
+        return this.form.cantidadMeses? `Ingrese una cuota mensual mayor a \$${Math.ceil(this.form.montoPrestamo/this.form.cantidadMeses)} y menor a \$${Math.ceil(this.form.montoPrestamo)}` : ''
       }
     },
     methods: {
@@ -138,9 +138,15 @@
         event.preventDefault()
         const values = this.form
         const result = await this.$axios.$post('http://localhost:8080/data', values);
+
+        result.montoPrestamo = this.$root.$options.filters.currency(result.montoPrestamo, '$', 0, { thousandsSeparator: '.' })
+        result.cuotaMensual = this.$root.$options.filters.currency(result.cuotaMensual, '$', 0, { thousandsSeparator: '.' })
+        result.CAE += "%"
+
         this.form.cuotaMensual = ''
         this.form.nombreBanco = null
         this.deshabilitado = true
+
         this.$emit('onResult',result)
 /*         alert(JSON.stringify(result)) */
         this.allForms.push(result)
