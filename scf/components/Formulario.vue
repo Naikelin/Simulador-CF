@@ -17,7 +17,7 @@
           id="input-1"
           v-model="form.montoPrestamo"
           type="number"
-          min = "1"
+          min = "100000"
           max = "100000000"
           placeholder="Ingrese el monto de su crédito, sin puntos"
           :disabled="deshabilitado"
@@ -137,7 +137,10 @@
       async onSubmit(event) {
         event.preventDefault()
         const values = this.form
-        const result = await this.$axios.$post('http://localhost:8080/data', values);
+        var result = ""
+        try {
+          result = await this.$axios.$post('http://localhost:8080/data', values);
+        
 
         result.montoPrestamo = this.$root.$options.filters.currency(result.montoPrestamo, '$', 0, { thousandsSeparator: '.' })
         result.cuotaMensual = this.$root.$options.filters.currency(result.cuotaMensual, '$', 0, { thousandsSeparator: '.' })
@@ -153,6 +156,12 @@
 /*         alert(JSON.stringify(this.allForms)) */
         var data = this.allForms
         this.$root.$emit('eventing', data);
+
+        } catch (error) {
+
+          alert("Error calculando el CAE")
+
+        }
       },
       onReset(event) {
         event.preventDefault()

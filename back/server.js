@@ -30,7 +30,11 @@ app.post('/data', (req, res) => {
   console.log(`child process close all stdio with code ${code}`);
 
   const result = { nombreBanco: nombre_banco, montoPrestamo: monto_prestamo, cuotaMensual: cuota_mensual, cantidadMeses: cantidad_meses, CAE: dataToSend }
-  res.send(result)
+  if (parseFloat(result.CAE) >= 0){
+    res.send(result)
+  } else {
+    res.sendStatus(500)
+  }
   });
 
 });

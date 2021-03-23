@@ -19,7 +19,7 @@
     },
     mounted() {
     this.$root.$on('eventing', data => {
-      this.items = data.sort((a,b) => Number(a.CAE)-Number(b.CAE))
+      this.items = data.sort((a,b) => Number(a.CAE.slice(0, a.CAE.length - 1)) - Number(b.CAE.slice(0, b.CAE.length - 1)))
     });
     }
   }
