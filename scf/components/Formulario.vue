@@ -1,7 +1,7 @@
 
 <template>
   <div class="container-fluid">
-    <b-card border-variant="info" img-src="http://www.eloriente.net/home/wp-content/uploads/2017/04/ESTADISTICA.jpg" img-right img-width="500" >
+    <b-card border-variant="info" img-src="https://image.freepik.com/vector-gratis/cuenta-pago-online-detalles-tarjeta-credito-informacion-personal-transaccion-financiera-trabajador-banco-personaje-dibujos-animados-banca-internet_335657-844.jpg" img-right img-width="500" >
      <div class="col-12">
        <b-card-body title="Comparador de créditos de consumo">
           <b-card-text>
