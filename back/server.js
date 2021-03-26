@@ -6,7 +6,7 @@ const {spawn} = require('child_process');
 const app = express();
 app.use(cors())
 app.use(bodyParser.json());
-const port = 8080;
+const port = 8000;
 
 app.post('/data', (req, res) => {
 
