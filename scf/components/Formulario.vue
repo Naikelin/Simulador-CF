@@ -139,7 +139,7 @@
         const values = this.form
         var result = ""
         try {
-          result = await this.$axios.$post('http://localhost:8080/data', values);
+          result = await this.$axios.$post('http://18.235.255.62:8000/data', values);
         
 
         result.montoPrestamo = this.$root.$options.filters.currency(result.montoPrestamo, '$', 0, { thousandsSeparator: '.' })
